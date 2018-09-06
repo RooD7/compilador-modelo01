@@ -1,3 +1,10 @@
+"""
+Modelo 01
+	Compilador basico
+
+Tipo de Compilador:
+	Top-Down Descendente Recursivo Preditivo
+"""
 import Lexico
 import argparse
 import sys
@@ -9,6 +16,6 @@ class Main:
 	print(file)
 	arquivo = open(file, 'r')
 	lexico = Lexico.Arquivo(arquivo.read())
-	token = lexico.getToken()
-	print('Token: ',token)
+	Token = lexico.getToken()
+	print('Token: ',Token)
 

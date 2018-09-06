@@ -16,8 +16,9 @@ class Token:
 	saida		= 15
 	eof			= 16
 	erro		= 17
+	virg		= 18
 
-	msg = ('(',')','.',';','num','ident','str','+','*','/','-','%','^','input','output','eof','erro')
+	msg = ('(',')','.',';','num','ident','str','+','*','/','-','%','^','input','output','eof','erro',',')
 
 class Atual:
 	linha	= 1

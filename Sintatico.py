@@ -5,49 +5,59 @@ def parse(self):
 	consome(tkEOF)
 	fechaAqrquivo()
 
+# OK
 def soma(self):
 	#soma = mult resto soma
-	self.mult()
-	restoSoma()
+	res1 = self.mult()
+	res2 = self.restoSoma()
+	res = res1 + res2
+	return res
 
+# OK
 def restoSoma():
 	#restosoma = vazio | + mult resto soma | - mult resto soma
 	if (Atual.token == tkmais):
 		consome(tkmais)
-		mult()
-		restoSoma()
+		self.mult()
+		self.restoSoma()
 	elif (Atual.token == tkmenos):
-		print("ident")
+		#print("ident")
+		self.mult()
+		self.restoSoma()
 	else:
-		pass
+		pass	
 
+# OK
 def consome(self):
-	if(token == Atual.token):
-		gettoken()
+	if(Token == Atual.token):
+		getToken()
 	else:
-		print("ERRO: era esperado o token "+msg(token+", mas veio o token "+msg(Atual.token)+": linha "+Atual.linha+", coluna: "Atual.coluna+"\n"))
+		print("ERRO: era esperado o Token "+msg(Token+", mas veio o Token "+msg(Atual.token)+": linha "+Atual.linha+", coluna: "Atual.coluna+"\n"))
 
+# OK
 def fator(self):
-	if (Atual.token == token.ident):
+	if (Atual.token == Token.ident):
 		if (Token.lexema in tabSimb):
 			res = tabSimb[Atual.lexema]
 		else:
 			raise Exception("variavel nao declarada")
-		consome(token.ident)
-	elif(Atual.token === token.abrePar):
-		consome(token.abrePar)
-		res = soma()
-		consome(token.fechaPar)
+		consome(Token.ident)
+	elif(Atual.token == Token.abrePar):
+		consome(Token.abrePar)
+		res = self.soma()
+		consome(Token.fechaPar)
 	else:
-		if (Atual.token == token.num):
+		if (Atual.token == Token.num):
 			res == int (Atual.lexema)
-		consome(token.num)
+		consome(Token.num)
 	return res
 
+# OK
 def mult(self):
 	uno()
 	restoMult()
 
+# OK
 def restoMult(self):
 	if(Atual.token == tkMult):
 		consome(tkMult)
@@ -59,6 +69,7 @@ def restoMult(self):
 	elif:
 		pass
 
+# OK
 def uno(self):
 	if(Atual.token == tkMais):
 		consome(tkMais)
@@ -69,4 +80,16 @@ def uno(self):
 	else
 		fator()
 	
-	
+def entra():
+	consome(Token.input)
+	consome(Token.abrePar)
+	if (Atual.token == Token.strg):
+		print(Token.lexema)
+	consome(Token.strg)
+	consome(Token.virg)
+	if(Atual.token == Token.ident):
+		res = input()
+		tabSimb[Atual.lexema] = float(res)
+		consome(Token.ident)
+		consome(Token.fechaPar)
+		consome(Token.ptoVirg)
