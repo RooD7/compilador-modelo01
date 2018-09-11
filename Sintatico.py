@@ -37,7 +37,7 @@ def consome(self):
 # OK
 def fator(self):
 	if (Atual.token == Token.ident):
-		if (Token.lexema in tabSimb):
+		if (Atual.lexema in tabSimb):
 			res = tabSimb[Atual.lexema]
 		else:
 			raise Exception("variavel nao declarada")
@@ -54,20 +54,39 @@ def fator(self):
 
 # OK
 def mult(self):
-	uno()
-	restoMult()
+	r1 = uno()
+	r2 = restoMult()
+	res = r1 * r2
+	return res
 
 # OK
+'''
+	Traducao usando sintese (pai 'sintetiza' atributos dos filhos)
+'''
 def restoMult(self):
-	if(Atual.token == tkMult):
-		consome(tkMult)
+	if(Atual.token == Token.mult):
+		consome(Token.mult)
 		uno()
-		restoMult()
-	elif(Atual.token == tkDiv):
-		consome(tkDiv)
-		uno()
-	elif:
-		pass
+		r1 = mult()
+		return mult()
+	elif(Atual.token == Token.div):
+		consome(Token.div)
+		r1 = uno()
+		r2 = restoMult()
+		res = r1 * r2
+		return res
+
+'''
+	Traducao usando heranca (filho 'herda' atributo do pai)
+# OK ''
+ def restoMult(r1):
+ 	if(Atual.token == Token.mult):
+ 		consome(Token.mult)
+ 		r2 = uno()
+ 		res = r1 * r2
+ 		r3 = restoMult(res)
+ 		return r3
+'''
 
 # OK
 def uno(self):
